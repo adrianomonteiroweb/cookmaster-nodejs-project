@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+
 const { loginService } = require('../services/login.service');
 
 const ERROR_LOGIN = { message: '' };
