@@ -1,4 +1,5 @@
 const express = require('express');
+const invalidToken = require('../middlewares/invalidToken');
 
 const app = express();
 app.use(express.json());
@@ -12,5 +13,6 @@ app.get('/', (request, response) => {
 const routes = require('../routes');
 
 app.use(routes);
+app.use(invalidToken);
 
 module.exports = app;
