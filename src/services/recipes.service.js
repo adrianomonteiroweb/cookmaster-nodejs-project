@@ -1,9 +1,15 @@
-const { recipesRegisterModel, recipesSearchModel } = require('../models/recipes.models');
+const { ObjectId } = require('mongodb');
 
+const {
+  recipesRegisterModel,
+  recipesSearchModel,
+  recipeByIdModel,
+} = require('../models/recipes.models');
 const { badRequest, notFound } = require('../utils/dictionary/statusCodes');
 const {
   invalidEntries,
   notFoundMsg,
+  notFoundRecipe,
 } = require('../utils/dictionary/statusMessages');
 const errors = require('../utils/functions/erros');
 const { recipeSchema } = require('./schemas');
@@ -27,7 +33,16 @@ const recipesSearchService = async () => {
   return recipes;
 };
 
+const recipeByIdService = async (id) => {
+  if (!ObjectId.isValid(id)) return errors(notFound, notFoundRecipe);
+  
+  const recipe = await recipeByIdModel(id);
+  // console.log(recipe);
+  return recipe;
+};
+
 module.exports = {
   recipesRegisterService,
   recipesSearchService,
+  recipeByIdService,
 };

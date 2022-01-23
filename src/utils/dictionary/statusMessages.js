@@ -6,7 +6,7 @@ const messages = {
   invalidEntries: 'Invalid entries. Try again.',
   fieldsRequired: 'All fields must be filled',
   notFoundToken: 'missing auth token',
-  notFoundMsg: 'recipe not found',
+  notFoundRecipe: 'recipe not found',
   serverErrorMsg: 'Internal Server Error',
 };
 

@@ -7,6 +7,7 @@ const {
 const {
   recipesRegisterController,
   recipesSearchController,
+  recipeByIdController,
 } = require('../controllers/recipes.controller');
 
 const { loginController } = require('../controllers/login.controller');
@@ -31,6 +32,11 @@ router.post(
 router.get(
   '/recipes',
   recipesSearchController,
+);
+
+router.get(
+  '/recipes/:id',
+  recipeByIdController,
 );
 
 module.exports = router;
