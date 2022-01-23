@@ -2,6 +2,7 @@ const {
   recipesRegisterService,
   recipesSearchService,
   recipeByIdService,
+  recipeUpdateService,
 } = require('../services/recipes.service');
 const {
   created,
@@ -58,8 +59,26 @@ const recipeByIdController = async (req, res, next) => {
   : res.status(success).json(recipe);
 };
 
+const recipeUpdateController = async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.user;
+
+  let recipe;
+  try {
+    recipe = await recipeUpdateService(id, _id, req.body);
+  } catch (error) {
+    console.log(error.message);
+    return next(error);
+  }
+  // console.log(recipe);
+  return recipe.code
+  ? res.status(notFound).json({ message: notFoundRecipe })
+  : res.status(success).json(recipe);
+};
+
 module.exports = {
   recipesRegisterController,
   recipesSearchController,
   recipeByIdController,
+  recipeUpdateController,
 };

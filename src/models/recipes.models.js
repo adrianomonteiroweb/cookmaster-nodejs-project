@@ -34,8 +34,23 @@ const recipeByIdModel = async (id) => {
   }
 };
 
+const recipeUpdateModel = async (id, recipe) => {
+  try {
+    const db = await connection();
+
+    const update = await db
+    .collection('recipes')
+    .updateOne({ _id: ObjectId(id) }, { $set: { ...recipe } });
+    console.log(update);
+    return update || null;
+  } catch (error) {
+    return error.message;
+  }
+};
+
 module.exports = {
   recipesRegisterModel,
   recipesSearchModel,
   recipeByIdModel,
+  recipeUpdateModel,
 };

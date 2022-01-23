@@ -9,10 +9,10 @@ const { unauthorized } = require('../utils/dictionary/statusCodes');
 
 const secret = 'secret';
 
-module.exports = (req, _res, next) => {
+module.exports = (req, res, next) => {
   const token = req.headers.authorization;
-
-  if (!token) return errors(unauthorized, notFoundToken);
+  const { code, message } = errors(unauthorized, notFoundToken);
+  if (!token) return res.status(code).json({ message });
   
   try {
     const { data } = jwt.verify(token, secret);
