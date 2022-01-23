@@ -1,22 +1,28 @@
 const jwt = require('jsonwebtoken');
 
+const errors = require('../utils/functions/erros');
+const {
+  infoToken,
+  notFoundToken,
+} = require('../utils/dictionary/statusMessages');
+const { unauthorized } = require('../utils/dictionary/statusCodes');
+
 const secret = 'secret';
 
-const tokenValidation = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization;
-  
-    if (!token) return res.status(401).json({ error: 'Token not found' });
-  
-    const { data: { _id: id, role } } = jwt.verify(token, secret);
-    
-    req.body.userId = id;
-    req.body.role = role;
-  
-    next();
-    } catch (err) {
-      next(err);
-    }
-};
+module.exports = (req, _res, next) => {
+  const token = req.headers.authorization;
 
-module.exports = tokenValidation;
+  if (!token) return errors(unauthorized, notFoundToken);
+  
+  try {
+    const { data } = jwt.verify(token, secret);
+    req.user = data;
+    // console.log(data);
+    return next();
+  } catch (error) {
+    error.message = infoToken;
+    error.status = unauthorized;
+    
+    return next(error);
+  }
+};

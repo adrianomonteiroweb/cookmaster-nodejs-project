@@ -13,7 +13,7 @@ const connection = async () => MongoClient.connect(MONGODB_URL, OPTIONS)
   .then((conn) => conn.db(DB_NAME))
   .catch((error) => {
     console.error(error);
-    process.exit();
+    process.exit(1);
   });
 
 module.exports = connection;

@@ -1,23 +1,45 @@
-// const status = require('http-status-codes').StatusCodes;
+const {
+  recipesRegisterService,
+  recipesSearchService,
+} = require('../services/recipes.service');
+const {
+  created,
+  success,
+  badRequest,
+} = require('../utils/dictionary/statusCodes');
 
-const { recipesRegisterService } = require('../services/recipes.service');
-
-const recipesRegisterController = async (req, res) => {
+const recipesRegisterController = async (req, res, next) => {
+  const { name, ingredients, preparation } = req.body;
+  const { _id } = req.user;
+  const recipe = {
+    name,
+    ingredients,
+    preparation,
+    userId: _id,
+  };
+  let result;
   try {
-    const { name, ingredients, preparation, userId } = req.body;
-   
-    const createResult = await recipesRegisterService({ name, ingredients, preparation, userId });
-
-    if (createResult.error) {
-      return res.status(400).json({ message: createResult.error.details[0].message }); 
-    }
-
-    return res.status(201).json(createResult);
+    result = await recipesRegisterService(recipe);
   } catch (error) {
-    return error.message;
+    console.error(error.message);
+    return next(error);
+  }
+  
+  return !result.code ? res.status(created).json(result)
+  : res.status(badRequest).json({ message: result.message });
+};
+
+const recipesSearchController = async (_req, res, next) => {
+  try {
+    const recipes = await recipesSearchService();
+    return res.status(success).json(recipes);
+  } catch (error) {
+    console.error(error.message);
+    return next(error);
   }
 };
 
 module.exports = {
   recipesRegisterController,
+  recipesSearchController,
 };

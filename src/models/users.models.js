@@ -1,28 +1,28 @@
-const connection = require('./connection');
+const connect = require('./connection');
 
-const userRegisterModel = async (body) => {
-  try {
-    const db = await connection();
-    const user = await db.collection('users').insertOne(body);
+const registerUserModel = async (name, email, password, role) => {
+  const db = await connect();
+  const { insertedId } = await db
+    .collection('users')
+    .insertOne({ name, email, password, role });
 
-    return user ? user.ops.pop() : null;
-  } catch (error) {
-    return error.message;
-  }
+  return insertedId;
 };
 
-const srcUserByEmailModel = async (email) => {
-  try {
-    const db = await connection();
-    const user = await db.collection('users').findOne({ email });
+const findByNameModel = async (name) => {
+  const db = await connect();
+  const user = await db.collection('users').findOne({ name });
+  return user;
+};
 
-    return user || null;
-  } catch (error) {
-    return error.message;
-  }
+const findByEmailModel = async (email) => {
+  const db = await connect();
+  const user = await db.collection('users').findOne({ email });
+  return user;
 };
 
 module.exports = {
-  userRegisterModel,
-  srcUserByEmailModel,
+  registerUserModel,
+  findByNameModel,
+  findByEmailModel,
 };

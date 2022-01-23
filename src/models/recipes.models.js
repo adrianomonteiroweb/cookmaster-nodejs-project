@@ -1,18 +1,25 @@
 const connection = require('./connection');
 
 const recipesRegisterModel = async (body) => {
-    try {
-      const db = await connection();
+  const db = await connection();
+  const { insertedId } = await db.collection('recipes').insertOne(body);
+  return insertedId;
+};
 
-      const recipes = await db
-      .collection('recipes').insertOne(body);
-      console.log(recipes);
+const recipesSearchModel = async () => {
+  try {
+    const db = await connection();
+
+    const recipes = await db
+      .collection('recipes').find().toArray();
+
       return recipes || null;
-    } catch (error) {
-      return error.message;
-    }
+  } catch (error) {
+    return error.message;
+  }
 };
 
 module.exports = {
   recipesRegisterModel,
+  recipesSearchModel,
 };

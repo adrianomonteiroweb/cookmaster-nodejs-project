@@ -1,20 +1,20 @@
-const status = require('http-status-codes').StatusCodes;
+const { userRegisterServices } = require('../services/users.service');
+const { created } = require('../utils/dictionary/statusCodes');
 
-const {
-  userRegisterServices,
-} = require('../services/users.service');
-
-const userRegisterController = async (req, res) => {
-  let data;
+const userRegisterController = async (req, res, next) => {
+  const { name, email, password } = req.body;
+  const { role } = req;
+  let user;
   try {
-    data = await userRegisterServices(req.body);
+    user = await userRegisterServices(name, email, password, role);
   } catch (error) {
-    return res.status().json();
+    console.error(error.message);
+    return next(error);
   }
-  delete data.password;
-  return data
-  ? res.status(status.CREATED).json({ user: { ...data, role: 'user' } })
-  : res.status(status.UNPROCESSABLE_ENTITY).json({ message: 'Erro na conexão!' });
+  // console.log(user.message);
+  return user.code
+  ? res.status(user.code).json({ message: user.message })
+  : res.status(created).json(user);
 };
 
 module.exports = {
