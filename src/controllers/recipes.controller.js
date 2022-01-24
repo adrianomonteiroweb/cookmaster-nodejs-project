@@ -3,12 +3,14 @@ const {
   recipesSearchService,
   recipeByIdService,
   recipeUpdateService,
+  recipeDeleteService,
 } = require('../services/recipes.service');
 const {
   created,
   success,
   badRequest,
   notFound,
+  noContent,
 } = require('../utils/dictionary/statusCodes');
 const { notFoundRecipe } = require('../utils/dictionary/statusMessages');
 
@@ -76,9 +78,23 @@ const recipeUpdateController = async (req, res, next) => {
   : res.status(success).json(recipe);
 };
 
+const recipeDeleteController = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await recipeDeleteService(id);
+
+    return res.status(noContent).json();
+  } catch (error) {
+    console.error(error.message);
+
+    return next(error);
+  }
+};
+
 module.exports = {
   recipesRegisterController,
   recipesSearchController,
   recipeByIdController,
   recipeUpdateController,
+  recipeDeleteController,
 };

@@ -5,6 +5,7 @@ const {
   recipesSearchModel,
   recipeByIdModel,
   recipeUpdateModel,
+  recipeDeleteModel,
 } = require('../models/recipes.models');
 const { badRequest, notFound } = require('../utils/dictionary/statusCodes');
 const {
@@ -54,9 +55,18 @@ const recipeUpdateService = async (id, userId, recipe) => {
   return { _id: id, ...recipe, userId };
 };
 
+const recipeDeleteService = async (id) => {
+  const recipe = await recipeByIdModel(id);
+  // console.log(recipe);
+  if (!ObjectId.isValid(id) || !recipe) throw errors(notFound, notFoundMsg);
+
+  await recipeDeleteModel(id);
+};
+
 module.exports = {
   recipesRegisterService,
   recipesSearchService,
   recipeByIdService,
   recipeUpdateService,
+  recipeDeleteService,
 };

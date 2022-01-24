@@ -9,6 +9,7 @@ const {
   recipesSearchController,
   recipeByIdController,
   recipeUpdateController,
+  recipeDeleteController,
 } = require('../controllers/recipes.controller');
 
 const { loginController } = require('../controllers/login.controller');
@@ -44,6 +45,12 @@ router.put(
   '/recipes/:id',
   auth,
   recipeUpdateController,
+);
+
+router.delete(
+  '/recipes/:id',
+  auth,
+  recipeDeleteController,
 );
 
 module.exports = router;

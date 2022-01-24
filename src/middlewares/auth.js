@@ -11,7 +11,9 @@ const secret = 'secret';
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
+  
   const { code, message } = errors(unauthorized, notFoundToken);
+  
   if (!token) return res.status(code).json({ message });
   
   try {
