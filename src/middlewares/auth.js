@@ -19,12 +19,12 @@ module.exports = (req, res, next) => {
   try {
     const { data } = jwt.verify(token, secret);
     req.user = data;
-    // console.log(data);
+    // console.log('try');
     return next();
   } catch (error) {
     error.message = infoToken;
     error.status = unauthorized;
-    
+    // console.log('catch');
     return next(error);
   }
 };

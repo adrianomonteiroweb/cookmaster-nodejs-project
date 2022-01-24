@@ -41,7 +41,7 @@ const recipeUpdateModel = async (id, recipe) => {
     const update = await db
     .collection('recipes')
     .updateOne({ _id: ObjectId(id) }, { $set: { ...recipe } });
-    console.log(update);
+    // console.log(update);
     return update || null;
   } catch (error) {
     return error.message;

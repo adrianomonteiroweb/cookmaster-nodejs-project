@@ -8,9 +8,11 @@ const app = express();
 const router = require('../routes');
 const error = require('../middlewares/error');
 
-app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
+
+app.use(bodyParser.json());
 app.use(express.json());
+
 app.use(router);
 app.use(error);
 

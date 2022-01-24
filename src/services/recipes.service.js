@@ -47,11 +47,11 @@ const recipeUpdateService = async (id, userId, recipe) => {
   if (!ObjectId.isValid(id)) return errors(notFound, notFoundRecipe);
 
   const { error } = recipeSchema.validate(recipe);
-  console.log(error);
+  // console.log(error);
   if (error) return errors(badRequest, invalidEntries);
 
-  const up = await recipeUpdateModel(id, recipe);
-  console.log(up);
+  await recipeUpdateModel(id, recipe);
+  // console.log(up);
   return { _id: id, ...recipe, userId };
 };
 
@@ -63,10 +63,24 @@ const recipeDeleteService = async (id) => {
   await recipeDeleteModel(id);
 };
 
+const recipeUpdateImgService = async (id, image) => {
+  const recipe = await recipeByIdModel(id);
+  // console.log(recipe);
+  const updated = {
+    image: `localhost:3000/src/uploads/${image}`,
+    ...recipe,
+  };
+
+  await recipeUpdateModel(id, updated);
+
+  return updated || null;
+};
+
 module.exports = {
   recipesRegisterService,
   recipesSearchService,
   recipeByIdService,
   recipeUpdateService,
   recipeDeleteService,
+  recipeUpdateImgService,
 };
