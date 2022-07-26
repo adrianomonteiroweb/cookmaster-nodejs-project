@@ -1,14 +1,6 @@
-### Termos e acordos
+# Projeto Cookmaster
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe
-
-# Boas vindas ao repositório do projeto Cookmaster!
-
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por Slack! #vqv 🚀
-
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos.
-
----
+Projeto Trybe de Nodejs para trabalhar com JWT. 🚀
 
 # Sumário
 
@@ -17,10 +9,6 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 - [Entregáveis](#entregáveis)
   - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
   - [Desenvolvimento](#desenvolvimento)
-  - [Data de Entrega](#data-de-entrega)
-- [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
-  - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
-  - [Durante o desenvolvimento](#durante-o-desenvolvimento)
 - [Como desenvolver](#como-desenvolver)
   - [Todos os seus endpoints devem estar no padrão REST](#todos-os-seus-endpoints-devem-estar-no-padrão-rest)
   - [Conexão com o Banco](#conexão-com-o-banco)
@@ -45,11 +33,6 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [12 - Crie um endpoint para cadastro de pessoas administradoras](#12---crie-um-endpoint-para-cadastro-de-pessoas-administradoras)
     - [13 - Crie testes de integração que cubram no mínimo 60% dos arquivos em `src`, com um mínimo de 100 linhas cobertas](#13---crie-testes-de-integração-que-cubram-no-mínimo-60-dos-arquivos-em-src-com-um-mínimo-de-100-linhas-cobertas)
     - [14 - Crie testes de integração que cubram no mínimo 90% dos arquivos em `src`, com um mínimo de 150 linhas cobertas](#14---crie-testes-de-integração-que-cubram-no-mínimo-90-dos-arquivos-em-src-com-um-mínimo-de-150-linhas-cobertas)
-  - [Depois de terminar o desenvolvimento (opcional)](#depois-de-terminar-o-desenvolvimento-opcional)
-- [Revisando um pull request](#revisando-um-pull-request)
-- [Avisos finais](#avisos-finais)
-
----
 
 # Habilidades
 
@@ -112,93 +95,16 @@ Deverá ser possível adicionar uma imagem à uma receita, utilizando o upload d
   ```js
   // ./src/api/app.js
 
-  const path = require('path');
+  const path = require("path");
   // ...
 
   // /images é o caminho/end-point da API onde as imagens estarão disponíveis
   // path.join(__dirname, '..', 'uploads') é o caminho da pasta onde o multer deve salvar suas imagens ao realizar o upload
   // a pasta `uploads` está em `./src/uploads` e não deve ser renomeada ou removida (assim como o arquivo `ratinho.jpg`)
-  app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
+  app.use("/images", express.static(path.join(__dirname, "..", "uploads")));
 
   // ...
   ```
-
----
-
-## Data de Entrega
-
-    - Serão `3` dias de projeto.
-    - Data de entrega para avaliação final do projeto: `26/01/2022 - 14:00h`.
-
----
-
-# Instruções para entregar seu projeto
-
-## Antes de começar a desenvolver
-
-1. Clone o repositório
-
-- `git clone https://github.com/tryber/sd-0x-cookmaster.git`.
-- Entre na pasta do repositório que você acabou de clonar:
-  - `cd sd-0x-cookmaster`
-
-2. Instale as dependências [**Caso existam**]
-
-- `npm install`
-
-3. Crie uma branch a partir da branch `master`
-
-- Verifique que você está na branch `master`
-  - Exemplo: `git branch`
-- Se não estiver, mude para a branch `master`
-  - Exemplo: `git checkout master`
-- Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
-  - Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-  - Exemplo: `git checkout -b joaozinho-sd-0x-cookmaster`
-
-4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
-
-- Verifique que as mudanças ainda não estão no _stage_
-  - Exemplo: `git status` (deve aparecer listada a pasta _joaozinho_ em vermelho)
-- Adicione o novo arquivo ao _stage_ do Git
-    - Exemplo:
-      - `git add .` (adicionando todas as mudanças - _que estavam em vermelho_ - ao stage do Git)
-      - `git status` (deve aparecer listado o arquivo _joaozinho/README.md_ em verde)
-- Faça o `commit` inicial
-    - Exemplo:
-      - `git commit -m 'iniciando o projeto x'` (fazendo o primeiro commit)
-      - `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
-
-5. Adicione a sua branch com o novo `commit` ao repositório remoto
-
-- Usando o exemplo anterior: `git push -u origin joaozinho-sd-0x-cookmaster`
-
-6. Crie um novo `Pull Request` _(PR)_
-
-- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-cookmaster/pulls)
-- Clique no botão verde _"New pull request"_
-- Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
-- Clique no botão verde _"Create pull request"_
-- Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
-- **Não se preocupe em preencher mais nada por enquanto!**
-- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-cookmaster/pulls) e confira que o seu _Pull Request_ está criado
-
----
-
-## Durante o desenvolvimento
-
-- Faça `commits` das alterações que você fizer no código regularmente.
-
-- Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto.
-
-- Os comandos que você utilizará com mais frequência são:
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
-  2. `git add` _(para adicionar arquivos ao stage do Git)_
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
-  4. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
-  5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
-
----
 
 # Como desenvolver
 
@@ -206,11 +112,11 @@ Deverá ser possível adicionar uma imagem à uma receita, utilizando o upload d
 
 **👀 Observações importantes:**
 
- - O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação;
- - O projeto deve rodar na porta **3000**;
- - A testagem local depende da API estar rodando (utilize `npm run dev` para facilitar o processo);
+- O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação;
+- O projeto deve rodar na porta **3000**;
+- A testagem local depende da API estar rodando (utilize `npm run dev` para facilitar o processo);
 
-##  Todos os seus endpoints devem estar no padrão REST
+## Todos os seus endpoints devem estar no padrão REST
 
 - Use os verbos HTTP adequados para cada operação.
 
@@ -222,15 +128,16 @@ Deverá ser possível adicionar uma imagem à uma receita, utilizando o upload d
 
 ---
 
-Há dois arquivos em `./src/api/` no repositório: `server.js` e `app.js`, **ambos não devem ser renomeados ou apagados**. 
+Há dois arquivos em `./src/api/` no repositório: `server.js` e `app.js`, **ambos não devem ser renomeados ou apagados**.
 
 Em `app.js` o seguinte trecho de código não deve ser removido:
 
 ```javascript
-app.get('/', (request, response) => {
+app.get("/", (request, response) => {
   response.send();
 });
 ```
+
 Isso está configurado para o avaliador funcionar corretamente.
 
 ## Conexão com o Banco
@@ -241,10 +148,13 @@ O avaliador não consegue ler as informações que estão no local (localhost).
 Portanto, para realizar a conexão com o banco, utilize os seguintes parâmetros:
 
 ```javascript
-require('dotenv').config();
-const MONGO_DB_URL = `mongodb://${process.env.HOST || 'mongodb'}:27017/Cookmaster`;
-const DB_NAME = 'Cookmaster';
+require("dotenv").config();
+const MONGO_DB_URL = `mongodb://${
+  process.env.HOST || "mongodb"
+}:27017/Cookmaster`;
+const DB_NAME = "Cookmaster";
 ```
+
 Além disso, **renomeie o arquivo `.env.dev` para `.env`**.
 
 Com essas configurações, enquanto estiver na máquina local, o banco será executado normalmente via localhost (possibilitando os testes via `npm test`).
@@ -259,7 +169,12 @@ A coleção de usuários deverá ter o seguinte nome: `users`.
 Os campos da coleção `users` terão este formato:
 
 ```json
-{ "name" : "Erick Jacquin", "email" : "erickjacquin@gmail.com", "password" : "12345678", "role" : "user" }
+{
+  "name": "Erick Jacquin",
+  "email": "erickjacquin@gmail.com",
+  "password": "12345678",
+  "role": "user"
+}
 ```
 
 A resposta do insert para ser retornada após a criação é esta:
@@ -267,14 +182,19 @@ A resposta do insert para ser retornada após a criação é esta:
 ```json
 { "_id" : ObjectId("5f46914677df66035f61a355"), "name" : "Erick Jacquin", "email" : "erickjacquin@gmail.com", "password" : "12345678", "role" : "user" }
 ```
-(O _id será gerado automaticamente pelo mongodb)
+
+(O \_id será gerado automaticamente pelo mongodb)
 
 A coleção de receitas deverá ter o seguinte nome: `recipes`.
 
 Os campos da coleção `recipes` terão este formato:
 
 ```json
-{ "name" : "Receita do Jacquin", "ingredients" : "Frango", "preparation" : "10 minutos no forno" }
+{
+  "name": "Receita do Jacquin",
+  "ingredients": "Frango",
+  "preparation": "10 minutos no forno"
+}
 ```
 
 A resposta do insert para ser retornada após a criação é esta:
@@ -282,7 +202,8 @@ A resposta do insert para ser retornada após a criação é esta:
 ```json
 { "_id" : ObjectId("5f46919477df66035f61a356"), "name" : "string", "ingredients" : "string", "preparation" : "string", "userId" : ObjectId("5f46914677df66035f61a355") }
 ```
-(O _id será gerado automaticamente pelo mongodb, e o userId será gerado com o id do usuário que criou a receita)
+
+(O \_id será gerado automaticamente pelo mongodb, e o userId será gerado com o id do usuário que criou a receita)
 
 ---
 
@@ -315,20 +236,19 @@ Inicialmente todos os testes falharão:
 Especialmente no início, quando a maioria dos testes está falhando, a saída após executar os testes é bastante poluída. Você pode desabilitar temporariamente um teste utilizando a função `skip` junto à função `it`. Como o nome indica, esta função "pula" um teste:
 
 ```js
-  it.skip('Será validado que o campo "email" é obrigatório', async () => {
-    await frisby
-      .post(`${url}/users/`,
-        {
-          name: 'Erick Jacquin',
-          password: '12345678',
-        })
-      .expect('status', 400)
-      .then((response) => {
-        const { body } = response;
-        const result = JSON.parse(body);
-        expect(result.message).toBe('Invalid entries. Try again.');
-      });
-  })
+it.skip('Será validado que o campo "email" é obrigatório', async () => {
+  await frisby
+    .post(`${url}/users/`, {
+      name: "Erick Jacquin",
+      password: "12345678",
+    })
+    .expect("status", 400)
+    .then((response) => {
+      const { body } = response;
+      const result = JSON.parse(body);
+      expect(result.message).toBe("Invalid entries. Try again.");
+    });
+});
 ```
 
 Uma estratégia é pular todos os testes no início e ir implementando um teste de cada vez, removendo dele a função `skip`.
@@ -374,6 +294,7 @@ npm test users.test.js
     "password": "string"
   }
   ```
+
 - Não use `bcrypt` ou outra biblioteca para encriptar a senha, para que o avaliador funcione corretamente.
 
 **Além disso, as seguintes verificações serão feitas:**
@@ -583,7 +504,7 @@ Crie um arquivo `seed.js` na raiz do projeto com uma query do Mongo DB capaz de 
 
 **Além disso, as seguintes verificações serão feitas:**
 
-- **[Será validado que o projeto tem um arquivo de seed, com um comando para inserir um usuário root e verifico que é possível fazer login]**    
+- **[Será validado que o projeto tem um arquivo de seed, com um comando para inserir um usuário root e verifico que é possível fazer login]**
 
 Será validado no arquivo `seed.js` existe a query para criar um usuário root
 
@@ -815,13 +736,13 @@ O resultado do numero total de linhas cobertas deve ser igual ou maior que `150`
 
 Para sinalizar que o seu projeto está pronto para o _"Code Review"_ dos seus colegas, faça o seguinte:
 
-* Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas:
+- Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas:
 
-  * No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**;
+  - No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**;
 
-  * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
+  - No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
 
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-00`.
+  - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-00`.
 
 Caso tenha alguma dúvida, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
